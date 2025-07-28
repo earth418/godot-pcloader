@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://tvqs5bte8356"]
+[gd_scene load_steps=5 format=3 uid="uid://tvqs5bte8356"]
 
-[ext_resource type="Script" uid="uid://b56sviimpq8nr" path="res://compute_shader.gd" id="1_a202f"]
+[ext_resource type="Script" uid="uid://b56sviimpq8nr" path="res://scripts/compute_shader.gd" id="1_a202f"]
+[ext_resource type="Script" uid="uid://bveffw4f6wwvg" path="res://scripts/PC_loader.gd" id="2_noarx"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a202f"]
+emission_shape = 4
+emission_point_count = 10000
+
+[sub_resource type="PointMesh" id="PointMesh_noarx"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_a202f")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Node3D"]
+process_material = SubResource("ParticleProcessMaterial_a202f")
+draw_pass_1 = SubResource("PointMesh_noarx")
+script = ExtResource("2_noarx")
